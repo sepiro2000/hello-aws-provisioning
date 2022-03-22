@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: krosslab-dev-private
+  namespace: default
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: "krosslab-dev-private"
+    alb.ingress.kubernetes.io/group.name: "krosslab-dev-private"
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/subnets: "subnet-0750eca19fd5285a3, subnet-0ecc2e5a79fa6930c, subnet-0537372f9e3f2f9a8"
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/actions.response-404: >
+      {"type":"fixed-response","fixedResponseConfig":{"contentType":"text/plain","statusCode":"404","messageBody":"404 error text"}}
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: response-404
+          servicePort: use-annotation

@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: nginx-2
   namespace: default
   annotations:
     alb.ingress.kubernetes.io/group.name: "krosslab-dev-public"
-    alb.ingress.kubernetes.io/group.order: "100"
+    alb.ingress.kubernetes.io/group.order: "200"
     alb.ingress.kubernetes.io/target-type: ip
 spec:
   ingressClassName: alb
   rules:
-  - host: nginx-test.krosslab.io
+  - host: nginx-2-test.krosslab.io
     http:
       paths:
       - backend:
           service:
-            name: nginx
+            name: nginx-2
             port:
               number: 80
         pathType: ImplementationSpecific

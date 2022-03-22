@@ -7,7 +7,3 @@ resources:
 - ingress.yaml
 
 namespace: default
-
-images:
-- name: upload-service
-  newTag:
